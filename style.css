@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 body {
   margin: 0px;
@@ -39,41 +39,53 @@ content {
 }
 
 /* Блок товарів */
+/* Блок товарів */
 .items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid; /* Використовуємо grid для розташування товарів */
+  grid-template-columns: repeat(2, 1fr); /* Два стовпці */
+  gap: 20px; /* Відстань між товарами */
+  justify-content: center;
 }
 
-.item{
-width: 200px;
-height: 320px;
-margin-bottom: 10px;
-border: 1px solid rgb(194, 194, 194);
-border-radius: 5px;
-box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
-}   
-
-/* Блок назви товару */
-.item-title {
-  font-weight: bold;
+/* Картка товару */
+.item {
+  width: 220px; /* Фіксована ширина для однакового вигляду */
+  min-height: 400px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid rgb(194, 194, 194);
+  border-radius: 5px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* Блок зображення товару */
 .item-image {
   height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Блок з оплатою частинами */
 .parts-pay {
-  margin-top: 30px;
+  margin-top: 10px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
+  flex-direction: row; /* Розташування іконок в ряд */
+  gap: 5px;
+  justify-content: flex-start;
 }
 
-/* Зображення, які знаходяться в блоці оплати частинами */
 .parts-pay img {
   height: 24px;
 }
@@ -84,10 +96,11 @@ box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   padding: 5px 10px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .price div:first-child {
-  width: 100px;
   font-size: 20px;
 }
 
@@ -112,40 +125,26 @@ box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
   background: rgb(253, 48, 48);
   color: white;
   border-radius: 5px;
+  padding: 5px 10px; /* Зменшено верхній і нижній відступ */
   display: flex;
-  align-items: center;
+  flex-direction: column; /* Вирівнювання тексту вертикально */
+  justify-content: center; /* Центрування тексту */
+  align-items: center; /* Центрування тексту по горизонталі */
+  margin-top: 10px; /* Відступ зверху */
+  text-align: center; /* Центрування тексту */
 }
 
 .bonus div:first-child {
-  width: 100px;
   font-size: 14px;
+  line-height: 1.2; /* Вирівнювання тексту для кращого вигляду */
 }
 
 .bonus div:last-child {
-  font-size: 24px;
+  font-size: 28px; /* Збільшено розмір основної ціни */
+  font-weight: bold; /* Виділено жирним */
 }
 
 .bonus div:last-child sup {
-  font-size: 14px;
+  font-size: 16px; /* Збільшено розмір валюти */
 }
 
-/* Блок контактів */
-.contacts p {
-  margin: 3px;
-}
-
-.contacts p:first-child {
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.contacts p:last-child {
-  border-left: 3px solid rgb(253, 48, 48);
-}
-
-/* Блок інформації */
-.info {
-  font-size: 9px;
-  text-align: justify;
-  color: rgb(120, 120, 120);
-}
