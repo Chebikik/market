@@ -1,40 +1,33 @@
-    // Перевірка підключеного файлу скриптів
-    console.log('Перевірка підключеного файлу скриптів market.js');
+console.log('Підключено файл скриптів market.js');
 
-    // Отримання елементу з ідентифікатором items
-    let itemsDiv = document.getElementById("items");
 
-    // Перевірка існування знайденого блоку
-    if (itemsDiv) {
-        // Вивід знайденого елементу
-        console.log(itemsDiv);
-
-       // itemsDiv.innerHTML += '<div class = "item"></div>';
-       // itemsDiv.innerHTML += '<div class = "item"></div>';
-       // itemsDiv.innerHTML += '<div class = "item"></div>';
-       // itemsDiv.innerHTML += '<div class = "item"></div>';
-
-        for (let i = 0; i < 100; i++) {
-            itemsDiv.innerHTML += '<div class="item"></div>';
+fetch('items.json') 
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Помилка завантаження JSON');
         }
+        return response.json();
+    })
+    .then(data => {
+        data.forEach(item => {
+       
+            let itemElement = document.getElementById(item.id);
+            if (itemElement) {
+               
+                let titleElement = itemElement.querySelector(".item-title");
+                if (titleElement) {
+                    titleElement.textContent = item.name;
+                }
 
-    } else {
-        // Вивід повідомлення про не знайдений блок
-        console.log('Блок товарів не знайдено');
-    }
-    
-    //Визначення масиву товарів
-    let itemsArray = [
-        'Газонокосарка 43',
-        'Електричний тример 110',
-        'Електрична газонокосарка 32',
-        'Акумуляторний обприскувач 12 N',
-    ];
-
-    //Виведення в консоль масиву
-    console.log(itemsArray);
-
-    //Виведення в консоль номерів та значень елементів масиву
-    for (let i = 0; i < itemsArray.length; i++) {
-        console.log(i + '-й елемент', itemsArray[i]);
-    }
+                
+                let imgElement = itemElement.querySelector("img");
+                if (imgElement) {
+                    imgElement.src = item.image; 
+                    imgElement.alt = item.name; 
+                }
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Помилка:', error);
+    });
